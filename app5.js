@@ -47,9 +47,6 @@ app.get("/janken", (req, res) => {
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
-  // ここに勝敗の判定を入れる
-  // 以下の数行は人間の勝ちの場合の処理なので，
-  // 判定に沿ってあいこと負けの処理を追加する
   judgement = '勝ち';
   win += 1;
   total += 1;
@@ -95,9 +92,9 @@ let station = [
 ];
 
 app.get("/keiyo", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
   res.render('db2', { data: station });
 });
+
 
 app.get("/keiyo_add", (req, res) => {
   let id = req.query.id;
