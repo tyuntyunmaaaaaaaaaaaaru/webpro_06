@@ -108,4 +108,16 @@ app.get("/keiyo_add", (req, res) => {
   res.redirect('/public/keiyo_add.html');
 });
 
+
+let ramen = [
+  { id:1, name:"一蘭", area:"福岡", type:"豚骨" },
+  { id:2, name:"天下一品", area:"京都", type:"こってり" },
+  { id:3, name:"蒙古タンメン中本", area:"東京", type:"辛味噌" },
+  { id:4, name:"麺屋武蔵", area:"東京", type:"魚介豚骨" },
+];
+
+app.get("/ramen", (req, res) => {
+  res.render('ramen', { data: ramen });
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

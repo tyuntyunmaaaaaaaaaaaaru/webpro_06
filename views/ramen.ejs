@@ -1,0 +1,19 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ラーメン店リスト</title>
+</head>
+<body>
+  <h2>好きなラーメン店</h2>
+  <table border="1">
+    <tr><th>ID</th><th>店名</th><th>エリア</th><th>タイプ</th></tr>
+      <% for( let row of data ) { %>
+        <tr><td><%= row.id %></td>
+        <td><%= row.name %></td>
+        <td><%= row.area %></td>
+        <td><%= row.type %></td></tr>
+      <% } %>
+  </table>
+</body>
+</html>
