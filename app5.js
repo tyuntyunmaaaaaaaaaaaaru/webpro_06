@@ -95,6 +95,7 @@ app.get("/keiyo", (req, res) => {
   res.render('db2', { data: station });
 });
 
+
 app.get("/keiyo_add", (req, res) => {
   let id = req.query.id;
   let code = req.query.code;
