@@ -120,4 +120,14 @@ app.get("/ramen", (req, res) => {
   res.render('ramen', { data: ramen });
 });
 
+app.get("/ramen_add", (req, res) => {
+  let id = req.query.id;
+  let name = req.query.name;
+  let area = req.query.area;
+  let type = req.query.type;
+  let newdata = { id: id, name: name, area: area, type: type };
+  ramen.push( newdata );
+  res.redirect('/ramen');
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
