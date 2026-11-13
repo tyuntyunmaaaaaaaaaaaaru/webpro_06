@@ -1,20 +1,34 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>京葉線の駅</title>
 </head>
 <body>
-  <h2>京葉線の駅の詳細</h2>
-  <table>
-    <tr><th>ID</th><th>駅コード</th><th>駅名</th></tr>
-      <% let number = 0 %>
-      <% for( let row of data ) { %>
-        <tr><td><%= row.id %></td>
+  <h2>京葉線の駅の一覧</h2>
+  <form action="/keiyo2" method="get">
+    駅名で検索: <input type="text" name="q" value="<%= q %>">
+    並び順:
+    <select name="sort">
+      <option value="id" <%= sort === 'id' ? 'selected' : '' %>>ID順</option>
+      <option value="distance" <%= sort === 'distance' ? 'selected' : '' %>>東京駅から近い順</option>
+      <option value="passengers" <%= sort === 'passengers' ? 'selected' : '' %>>乗客数が多い順</option>
+    </select>
+    <input type="submit" value="表示">
+  </form>
+  <p><%= data.length %> 件</p>
+  <table border="1">
+    <tr><th>ID</th><th>駅コード</th><th>駅名</th><th>乗客数</th><th>距離(km)</th></tr>
+    <% for (let row of data) { %>
+      <tr>
+        <td><%= row.id %></td>
         <td><%= row.code %></td>
-        <td><a href="/keiyo2/<%= number %>"><%= row.name %></a></td></tr>
-        <% number += 1 %>
-      <% } %>
+        <td><a href="/keiyo2/<%= row.number %>"><%= row.name %></a></td>
+        <td><%= row.passengers %></td>
+        <td><%= row.distance %></td>
+      </tr>
+    <% } %>
   </table>
+  <p><a href="/keiyo2_new">駅を追加する</a></p>
 </body>
 </html>
