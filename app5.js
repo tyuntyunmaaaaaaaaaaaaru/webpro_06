@@ -150,3 +150,45 @@ app.get("/keiyo2/:number", (req, res) => {
   const detail = station2[ number ];
   res.render('keiyo2_detail', {data: detail} );
 });
+// ===== station2 削除・変更機能 =====
+// 削除（例: /keiyo2_delete/7）
+app.get("/keiyo2_delete/:number", (req, res) => {
+  const number = req.params.number;
+  if (station2[number] === undefined) {
+    res.status(404).send("その駅は存在しません");
+    return;
+  }
+  station2.splice(number, 1);
+  res.redirect('/keiyo2');
+});
+
+// 変更フォームの表示（現在の値が入った状態）
+app.get("/keiyo2_edit/:number", (req, res) => {
+  const number = req.params.number;
+  const detail = station2[number];
+  if (detail === undefined) {
+    res.status(404).send("その駅は存在しません");
+    return;
+  }
+  res.render('keiyo2_edit', {number: number, data: detail});
+});
+
+// 変更処理（例: /keiyo2_update/0?code=JE01&name=東京駅&change=...&passengers=...&distance=...）
+app.get("/keiyo2_update/:number", (req, res) => {
+  const number = req.params.number;
+  const target = station2[number];
+  if (target === undefined) {
+    res.status(404).send("その駅は存在しません");
+    return;
+  }
+  if (!req.query.code || !req.query.name) {
+    res.status(400).send("駅コードと駅名は必須です．");
+    return;
+  }
+  target.code = req.query.code;
+  target.name = req.query.name;
+  target.change = req.query.change || "";
+  target.passengers = Number(req.query.passengers) || 0;
+  target.distance = Number(req.query.distance) || 0;
+  res.redirect('/keiyo2/' + number);
+});
