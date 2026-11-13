@@ -140,15 +140,22 @@ let station2 = [
 ];
 
 app.get("/keiyo2", (req, res) => {
-  // 本来ならここにDBとのやり取りが入る
-  res.render('keiyo2', {data: station2} );
+  const q = req.query.q || "";
+  const sort = req.query.sort || "id";
+  let list = station2.map((row, i) => ({number: i, ...row}));
+  if (q !== "") {
+    list = list.filter(row => row.name.includes(q));
+  }
+  if (sort === "distance") list.sort((a, b) => a.distance - b.distance);
+  if (sort === "passengers") list.sort((a, b) => b.passengers - a.passengers);
+  res.render('keiyo2', {data: list, q: q, sort: sort});
 });
 
 app.get("/keiyo2/:number", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = station2[ number ];
-  res.render('keiyo2_detail', {data: detail} );
+  res.render('keiyo2_detail', {number: number, data: detail});
 });
 // ===== station2 削除・変更機能 =====
 // 削除（例: /keiyo2_delete/7）
