@@ -10,8 +10,10 @@
 
   <table>
     <tr><th>ID</th><th>代表曲</th></tr>
-
-  </td><td><%= data.id %></td><td><%= data.song %></td></tr>
+    <% for( let row of songs ) { %>
+      <tr><td><%= row.id %></td>
+      <td><a href="<%= row.url %>"><%= row.title %></a></td></tr>
+    <% } %>
   </table>
   <a href="/music">ジャンル一覧に戻る</a>
 

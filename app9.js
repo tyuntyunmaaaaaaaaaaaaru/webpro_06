@@ -27,6 +27,33 @@ let artist = [
   { id:12, genreId:4, name:"Sewerslvt", intro:"オーストラリア出身とされる、ネット発のドラムンベース・ブレイクコアのプロジェクト。", region:"オーストラリア", song:"Cyberia Lyr1" },
 ];
 
+let song = [
+  { id:1, artistId:1, title:"Bochka, Bass, Kolbasyor", url:"https://www.youtube.com/results?search_query=XS+Project+Bochka%2C+Bass%2C+Kolbasyor" },
+  { id:2, artistId:1, title:"Russian Army", url:"https://www.youtube.com/results?search_query=XS+Project+Russian+Army" },
+  { id:3, artistId:2, title:"Nash Gimn", url:"https://www.youtube.com/results?search_query=Hardbass+School+Nash+Gimn" },
+  { id:4, artistId:2, title:"Narkotik Kal", url:"https://www.youtube.com/results?search_query=Hardbass+School+Narkotik+Kal" },
+  { id:5, artistId:3, title:"Gopnik", url:"https://www.youtube.com/results?search_query=DJ+Blyatman+Gopnik" },
+  { id:6, artistId:3, title:"Cyka Blyat", url:"https://www.youtube.com/results?search_query=DJ+Blyatman+Cyka+Blyat" },
+  { id:7, artistId:4, title:"Gorod ustal", url:"https://www.youtube.com/results?search_query=Ploho+Gorod+ustal" },
+  { id:8, artistId:4, title:"Magnitofon", url:"https://www.youtube.com/results?search_query=Ploho+Magnitofon" },
+  { id:9, artistId:5, title:"Gruppa krovi", url:"https://www.youtube.com/results?search_query=Kino+Gruppa+krovi" },
+  { id:10, artistId:5, title:"Zvezda po imeni Solntse", url:"https://www.youtube.com/results?search_query=Kino+Zvezda+po+imeni+Solntse" },
+  { id:11, artistId:6, title:"Vsyo idyot po planu", url:"https://www.youtube.com/results?search_query=Grazhdanskaya+Oborona+Vsyo+idyot+po+planu" },
+  { id:12, artistId:6, title:"Poganaya molodyozh", url:"https://www.youtube.com/results?search_query=Grazhdanskaya+Oborona+Poganaya+molodyozh" },
+  { id:13, artistId:7, title:"Fairytale Gone Bad", url:"https://www.youtube.com/results?search_query=DJ+Gollum+Fairytale+Gone+Bad" },
+  { id:14, artistId:7, title:"Only You", url:"https://www.youtube.com/results?search_query=DJ+Gollum+Only+You" },
+  { id:15, artistId:8, title:"Freefall", url:"https://www.youtube.com/results?search_query=Jeckyll+%26+Hyde+Freefall" },
+  { id:16, artistId:8, title:"Frozen Flame", url:"https://www.youtube.com/results?search_query=Jeckyll+%26+Hyde+Frozen+Flame" },
+  { id:17, artistId:9, title:"The Force", url:"https://www.youtube.com/results?search_query=DJ+Marcky+The+Force" },
+  { id:18, artistId:9, title:"Vive la France", url:"https://www.youtube.com/results?search_query=DJ+Marcky+Vive+la+France" },
+  { id:19, artistId:10, title:"Wonderfulcore", url:"https://www.youtube.com/results?search_query=usedcvnt+Wonderfulcore" },
+  { id:20, artistId:10, title:"ultraviolet", url:"https://www.youtube.com/results?search_query=usedcvnt+ultraviolet" },
+  { id:21, artistId:11, title:"Hajnal", url:"https://www.youtube.com/results?search_query=Venetian+Snares+Hajnal" },
+  { id:22, artistId:11, title:"Szamar Madar", url:"https://www.youtube.com/results?search_query=Venetian+Snares+Szamar+Madar" },
+  { id:23, artistId:12, title:"Cyberia Lyr1", url:"https://www.youtube.com/results?search_query=Sewerslvt+Cyberia+Lyr1" },
+  { id:24, artistId:12, title:"Newlove", url:"https://www.youtube.com/results?search_query=Sewerslvt+Newlove" },
+];
+
 app.get("/music", (req, res) => {
   const q = req.query.q || "";
   const sort = req.query.sort || "id";
@@ -52,7 +79,8 @@ app.get("/artist/:number", (req, res) => {
   // 本来ならここにDBとのやり取りが入る
   const number = req.params.number;
   const detail = artist[ number ];
-  res.render('artist_detail', {number: number, data: detail});
+  const list = song.filter(row => row.artistId == detail.id);
+  res.render('artist_detail', {number: number, data: detail, songs: list});
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
