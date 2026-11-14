@@ -1,0 +1,24 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.name %></title>
+</head>
+<body>
+  <h2><%= data.name %>の詳細</h2>
+  <table>
+    <tr><th>項目</th><th>データ</th></tr>
+
+    <tr><td>ID</td><td><%= data.id %></td></tr>
+    <tr><td>ジャンル名</td><td><%= data.name %></td></tr>
+
+    <tr><td>発祥国</td><td><%= data.country %></td></tr>
+
+    <tr><td>関連ジャンル</td><td><%= data.related %></td></tr>
+
+    <tr><td>発祥時期（年代）</td><td><%= data.year %></td></tr>
+  </table>
+  <a href="/music">ジャンル一覧に戻る</a>
+
+</body>
+</html>

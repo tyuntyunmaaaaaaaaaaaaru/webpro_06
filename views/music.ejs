@@ -1,0 +1,18 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>音楽ジャンル</title>
+</head>
+<body>
+  <h2>音楽ジャンルの一覧</h2>
+  <table>
+    <tr><th>ID</th><th>ジャンル名</th><th>発祥国</th></tr>
+    <% for( let row of data ) { %>
+      <tr><td><%= row.id %></td>
+      <td><a href="/music/<%= row.number %>"><%= row.name %></a></td>
+      <td><%= row.country %></td></tr>
+    <% } %>
+  </table>
+</body>
+</html>
