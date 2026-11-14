@@ -18,6 +18,15 @@
 
     <tr><td>発祥時期（年代）</td><td><%= data.year %></td></tr>
   </table>
+
+  <h3><%= data.name %>のアーティスト</h3>
+  <table>
+    <tr><th>ID</th><th>アーティスト名</th></tr>
+    <% for( let row of artists ) { %>
+      <tr><td><%= row.id %></td>
+      <td><%= row.name %></td></tr>
+    <% } %>
+  </table>
   <a href="/music">ジャンル一覧に戻る</a>
 
 </body>
