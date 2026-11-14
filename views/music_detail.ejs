@@ -21,10 +21,12 @@
 
   <h3><%= data.name %>のアーティスト</h3>
   <table>
-    <tr><th>ID</th><th>アーティスト名</th></tr>
+    <tr><th>ID</th><th>アーティスト名</th><th>活動地域</th><th>代表曲</th></tr>
     <% for( let row of artists ) { %>
       <tr><td><%= row.id %></td>
-      <td><%= row.name %></td></tr>
+      <td><a href="/artist/<%= row.number %>"><%= row.name %></a></td>
+      <td><%= row.region %></td>
+      <td><%= row.song %></td></tr>
     <% } %>
   </table>
   <a href="/music">ジャンル一覧に戻る</a>
