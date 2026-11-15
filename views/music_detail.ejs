@@ -33,6 +33,35 @@
     box-sizing: border-box;
     outline: none;
 }
+
+:root {
+    --main-text: #333;
+    --main-bg: #fff;
+    --link-color: #0000ee;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-text: #ddd;
+        --main-bg: #000;
+        --link-color: #8ab4f8;
+    }
+}
+
+body {
+    color: var(--main-text);
+    background-color: var(--main-bg);
+    transition: 0.5s;
+}
+
+a {
+    color: var(--link-color);
+}
+
+.search-form-6 input {
+    background-color: transparent;
+    color: var(--main-text);
+}
   </style>
 </head>
 <body>
